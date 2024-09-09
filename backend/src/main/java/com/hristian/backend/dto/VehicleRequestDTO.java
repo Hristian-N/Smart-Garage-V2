@@ -12,20 +12,6 @@ public class VehicleRequestDTO {
 
     private int creationYear;
 
-    /*
-
-    @Column(nullable = false)
-    private LocalDate dates;
-
-    @OneToMany
-    private Map<LocalDate, Service> serviceMap = new HashMap<>();
-
-    @OneToMany
-    private Map<LocalDate, Part> partMap = new HashMap<>();
-
-    private boolean isDeleted;
-     */
-
     public Long getUserId() {
         return userId;
     }

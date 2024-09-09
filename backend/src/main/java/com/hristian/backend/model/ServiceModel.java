@@ -20,8 +20,8 @@ public class ServiceModel {
     private long mechanicId;
 
     @ManyToOne
-    @JoinColumn(name = "visit_id", nullable = false)
-    private Visit visit;
+    @JoinColumn(name = "vehicle_id", nullable = false)
+    private Vehicle vehicle;
 
     private boolean isDeleted;
 

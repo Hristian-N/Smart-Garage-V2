@@ -4,6 +4,7 @@ public class PartResponseDTO {
     private int id;
     private String name;
     private double unitPrice;
+    private int quantity;
     private boolean isDeleted;
 
     public int getId() {
@@ -36,5 +37,13 @@ public class PartResponseDTO {
 
     public void setDeleted(boolean deleted) {
         isDeleted = deleted;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

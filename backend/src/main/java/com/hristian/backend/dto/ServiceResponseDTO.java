@@ -5,7 +5,6 @@ public class ServiceResponseDTO {
     private long id;
     private String name;
     private double price;
-    private long mechanicId;
 
     public long getId() {
         return id;
@@ -29,13 +28,5 @@ public class ServiceResponseDTO {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public long getMechanicId() {
-        return mechanicId;
-    }
-
-    public void setMechanicId(long mechanicId) {
-        this.mechanicId = mechanicId;
     }
 }

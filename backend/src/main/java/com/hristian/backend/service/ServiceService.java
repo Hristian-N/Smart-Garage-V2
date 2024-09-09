@@ -67,7 +67,6 @@ public class ServiceService {
         // Update code
         service.setName(serviceRequestDTO.getName());
         service.setPrice(serviceRequestDTO.getPrice());
-        service.setMechanicId(serviceRequestDTO.getMechanicId());
 
         return serviceMapper.serviceToServiceResponseDTO(serviceRepository.save(service));
     }

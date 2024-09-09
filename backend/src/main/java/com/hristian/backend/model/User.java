@@ -38,7 +38,6 @@ public class User {
 
     private boolean isDeleted;
     private boolean isAdmin;
-    private boolean isMechanic;
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 
@@ -118,11 +117,4 @@ public class User {
         this.vehicles = vehicles;
     }
 
-    public boolean isMechanic() {
-        return isMechanic;
-    }
-
-    public void setMechanic(boolean mechanic) {
-        isMechanic = mechanic;
-    }
 }

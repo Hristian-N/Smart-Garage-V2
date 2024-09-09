@@ -1,16 +1,12 @@
 package com.hristian.backend.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Pattern;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Vehicle {
@@ -22,9 +18,6 @@ public class Vehicle {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
-    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Visit> visits = new ArrayList<>();
 
     private String model;
 
@@ -41,20 +34,15 @@ public class Vehicle {
     @Max(2024)
     private int creationYear;
 
-/*
-    @Column(nullable = false)
-    @ElementCollection
-    private List<LocalDate> dates;
-
-    @OneToMany
-    private Map<LocalDate, ServiceModel> serviceMap = new HashMap<>();
-
-    @OneToMany
-    private Map<LocalDate, Part> partMap = new HashMap<>();
- */
-
     private boolean isDeleted;
 
+    @ManyToMany
+    @JoinTable(
+            name = "vehicle_part",
+            joinColumns = @JoinColumn(name = "vehicle_id"),
+            inverseJoinColumns = @JoinColumn(name = "part_id")
+    )
+    private Set<Part> parts = new HashSet<>();
 
     public long getId() {
         return id;
@@ -80,57 +68,29 @@ public class Vehicle {
         this.model = model;
     }
 
-    public @Pattern(regexp = "^[A-C, E, H, K, M, O, P, T, X, Y]{1,2}\\s?\\d{4}[A-C, E, H, K, M, O, P, T, X, Y]{2}$") String getLicensePlate() {
+    public String getLicensePlate() {
         return licensePlate;
     }
 
-    public void setLicensePlate(@Pattern(regexp = "^[A-C, E, H, K, M, O, P, T, X, Y]{1,2}\\s?\\d{4}[A-C, E, H, K, M, O, P, T, X, Y]{2}$") String licensePlate) {
+    public void setLicensePlate(String licensePlate) {
         this.licensePlate = licensePlate;
     }
 
-    public @Size(min = 17, max = 17) String getVin() {
+    public String getVin() {
         return vin;
     }
 
-    public void setVin(@Size(min = 17, max = 17) String vin) {
+    public void setVin(String vin) {
         this.vin = vin;
     }
 
-    @Min(1886)
-    @Max(2024)
     public int getCreationYear() {
         return creationYear;
     }
 
-    public void setCreationYear(@Min(1886) @Max(2024) int creationYear) {
+    public void setCreationYear(int creationYear) {
         this.creationYear = creationYear;
     }
-
-    /*
-    public List<LocalDate> getDates() {
-        return dates;
-    }
-
-    public void setDates(List<LocalDate> dates) {
-        this.dates = dates;
-    }
-
-    public Map<LocalDate, ServiceModel> getServiceMap() {
-        return serviceMap;
-    }
-
-    public void setServiceMap(Map<LocalDate, ServiceModel> serviceMap) {
-        this.serviceMap = serviceMap;
-    }
-
-    public Map<LocalDate, Part> getPartMap() {
-        return partMap;
-    }
-
-    public void setPartMap(Map<LocalDate, Part> partMap) {
-        this.partMap = partMap;
-    }
-    */
 
     public boolean isDeleted() {
         return isDeleted;
@@ -138,5 +98,13 @@ public class Vehicle {
 
     public void setDeleted(boolean deleted) {
         isDeleted = deleted;
+    }
+
+    public Set<Part> getParts() {
+        return parts;
+    }
+
+    public void setParts(Set<Part> parts) {
+        this.parts = parts;
     }
 }

@@ -2,7 +2,8 @@ package com.hristian.backend.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Part {
@@ -18,11 +19,12 @@ public class Part {
     @Min(0)
     private double unitPrice;
 
+    private int quantity;
+
     private boolean isDeleted;
 
-    @ManyToOne
-    @JoinColumn(name = "visit_id", nullable = false)
-    private Visit visit;
+    @ManyToMany(mappedBy = "parts")
+    private Set<Vehicle> vehicles = new HashSet<>();
 
     public int getId() {
         return id;
@@ -57,11 +59,19 @@ public class Part {
         isDeleted = deleted;
     }
 
-    public Visit getVisit() {
-        return visit;
+    public Set<Vehicle> getVehicles() {
+        return vehicles;
     }
 
-    public void setVisit(Visit visit) {
-        this.visit = visit;
+    public void setVehicles(Set<Vehicle> vehicles) {
+        this.vehicles = vehicles;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
