@@ -5,7 +5,7 @@ import RangeSlider from "../components/RangeSlider";
 
 interface Props {
   elements: string[];
-  selectLabel: string;
+  selectLabel?: string;
   showSearch?: boolean;
   showDates?: boolean;
   showSlider?: boolean;

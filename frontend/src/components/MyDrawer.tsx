@@ -28,11 +28,8 @@ function MyDrawer() {
       <h3 className="mt-4 mb-2 text-center">Smart Garage V2</h3>
       <List>
         {[
-          { text: "Visits", path: "/admin/visit" },
           { text: "Customers", path: "/admin/customer" },
           { text: "Vehicles", path: "/admin/vehicle" },
-          { text: "Services", path: "/admin/service" },
-          { text: "Mechanics", path: "/admin/mechanic" },
           { text: "Developer API", path: "/admin/api" },
           { text: "Log Out", path: "/logout" },
         ].map((item, index) => (

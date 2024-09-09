@@ -4,10 +4,18 @@ interface Props {
 }
 
 const columnDisplayNames: { [key: string]: string } = {
+  id: "Id",
   licensePlate: "License Plate",
   model: "Model",
   creationYear: "Creation Year",
   vin: "VIN",
+  brand: "Brand",
+  owner: "Owner",
+  date: "Date",
+  price: "Price",
+  details: "Details",
+  quantity: "Quantity",
+  unitPrice: "Unit Price",
 };
 
 function Table({ columns, data }: Props) {
